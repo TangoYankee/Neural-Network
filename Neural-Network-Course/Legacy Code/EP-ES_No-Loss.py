@@ -439,16 +439,3 @@ class PNNValidate:
 
     def getTrainArray(self):
         return self.trainArray
-
-
-
-
-
-        
-
-
-
-
-
-
-        
