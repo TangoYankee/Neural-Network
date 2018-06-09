@@ -1,13 +1,9 @@
 import hello_world
 
 item = {
-    'title': 'first',
-    'link': 'here.com',
-    'location': 'here',
-    'original_price': '10',
-    'price': '9'
+    'values': [0.098, 0.872762, 0.12, 0.563]
 }
 
-testPipeline = hello_world.LivingSocialPipeline()
-saved_item  = testPipeline.process_item(item)
-print(saved_item)
+testPipeline = hello_world.BasePipeline()
+saved_item = testPipeline.process_cancer(item)
+testPipeline.query_database()
