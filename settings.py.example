@@ -1,3 +1,13 @@
+import os
+from os.path import dirname
+
+
+BASE_PATH = dirname(os.path.abspath(__file__))
+
+DATA_LOC = 'data'
+DATA_DIR = os.path.join(BASE_PATH, DATA_LOC)
+
+
 DATABASE = {
     'drivername': 'postgres',
     'host':'localhost',
