@@ -23,12 +23,4 @@ Base = declarative_base(cls=Base)
 
 class TrainingData(Base):
     fold = Column(Boolean, default=True)
-
-# class CancerData(Base):
-#     id = Column(Integer, primary_key = True)
-
-# class EPData(Base):
-#     id = Column(Integer, primary_key = True)
-
-# class PNNData(Base):
-#     id = Column(Integer, primary_key = True)
+    
