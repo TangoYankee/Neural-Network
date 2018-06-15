@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Float, Integer
+from sqlalchemy import create_engine, Column, Float, Integer, Boolean
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.engine.url import URL
@@ -16,15 +16,19 @@ class Base(object):
     def __tablename__(cls):
         return cls.__name__.lower()
 
+    id = Column(Integer, primary_key=True)
     values = Column(postgresql.ARRAY(Float))
 
 Base = declarative_base(cls=Base)
 
-class CancerData(Base):
-    id = Column(Integer, primary_key = True)
+class TrainingData(Base):
+    fold = Column(Boolean, default=True)
 
-class EPData(Base):
-    id = Column(Integer, primary_key = True)
+# class CancerData(Base):
+#     id = Column(Integer, primary_key = True)
 
-class PNNData(Base):
-    id = Column(Integer, primary_key = True)
+# class EPData(Base):
+#     id = Column(Integer, primary_key = True)
+
+# class PNNData(Base):
+#     id = Column(Integer, primary_key = True)
