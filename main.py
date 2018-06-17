@@ -9,7 +9,7 @@ create_tables(engine)
 Session = sessionmaker(bind=engine)
 
 data_file_name = "cancer_data.csv"
-fold_divider = 5
+k_folds = 5
 # "cancer_data.csv"
 # "ep_data.csv"
 # "pnn_data.csv"
@@ -27,18 +27,17 @@ def session_scope():
 
 def main():
     with session_scope() as session:
-        print("Clear Data")
-        Pipeline().clear_data(session)
-        print("Load Data")
-        Pipeline().load_data(session, data_file_name)
-        Pipeline().print_all(session)
-        print("withhold a fold")
-        Pipeline().withhold_fold(session, fold_divider)
-        Pipeline().print_all(session)
-        print("clear withhold")
-        Pipeline().clear_withhold(session)
-        Pipeline().print_all(session)       
-
+    #     print("Clear Data")
+    #     Pipeline().clear_data(session)
+        # print("Load Data")
+        # Pipeline().load_data(session, data_file_name)
+        # Pipeline().print_all(session)
+        # print("Assign folds")
+        # Pipeline().assign_folds(session, k_folds)
+        # Pipeline().print_all(session)
+        # print("clear folds")
+        # Pipeline().clear_folds(session)  
+        Pipeline().print_all(session)   
 
 if __name__ == "__main__":
     main()

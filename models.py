@@ -21,6 +21,6 @@ class Base(object):
 
 Base = declarative_base(cls=Base)
 
-class TrainingData(Base):
-    fold = Column(Boolean, default=True)
+class RawData(Base):
+    fold = Column(Integer, default = 0)
     
