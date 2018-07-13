@@ -23,4 +23,8 @@ Base = declarative_base(cls=Base)
 
 class RawData(Base):
     fold = Column(Integer, default = 0)
+
+class TestData(Base):
+    fold = Column(Integer, default=None)   
+    true_value = Column(Integer)
     
