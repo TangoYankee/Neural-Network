@@ -1,3 +1,7 @@
+"""
+Neural Network Database defaults to a Postgres Database named 'neural-networks'
+"""
+
 import os
 from os.path import dirname
 

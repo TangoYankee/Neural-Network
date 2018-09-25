@@ -1,0 +1,7 @@
+#!/bin/bash
+read -r -p "Folder: " folder
+FILES=./$folder/*.py
+for file in $FILES
+do
+  pylint $(basename $file)
+done
