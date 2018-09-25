@@ -1,0 +1,8 @@
+#!/bin/bash
+read -r -p 'Branch Name: ' branchName
+read -r -p 'Commit message: ' commitMessage
+git checkout -b "$branchName"
+git add .
+git add -u
+git commit -m "$commitMessage"
+git push origin $branchName
