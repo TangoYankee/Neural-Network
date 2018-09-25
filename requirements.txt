@@ -1,2 +1,4 @@
 sqlalchemy==1.2.8
 numpy==1.14.2
+alembic==1.0.0
+matplotlib==3.0.0
