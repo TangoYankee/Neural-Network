@@ -4,11 +4,11 @@ Define the SQL Data Session and control the flow of the Neural Network
 from contextlib import contextmanager
 from sqlalchemy.orm import sessionmaker
 
-from models import db_connect, create_tables
+from models import db_connect#, create_tables
 # from sql_manager import Pipeline
 
 ENGINE = db_connect()
-create_tables(ENGINE)
+# create_tables(ENGINE)
 SESSION = sessionmaker(bind=ENGINE)
 
 DATA_FILE_NAME = "cancer_data.csv"
