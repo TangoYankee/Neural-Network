@@ -1,5 +1,6 @@
 #Project Specific
 settings.py
+alembic.ini
 
 #Standard Python GitIgnore
 

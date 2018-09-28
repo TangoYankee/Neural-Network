@@ -3,3 +3,4 @@ numpy==1.14.2
 alembic==1.0.0
 matplotlib==3.0.0
 pylint==1.9
+psycopg2==2.7.5

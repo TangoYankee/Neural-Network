@@ -2,12 +2,19 @@
 Manipulation of the sql database, including adding data from csv file, clearing data from the database, and changing the assignment of folds. 
 """
 
+##TODO: 
+# 1. Re-write to make print all, assign folds, clear folds and their dependent functions properties of tables
+# 2. Remove clear data function
+# 3. Place functions to load csv data (get from csv, format_data_row, load_data, add_data) into a python script, separate from the Artificial Neural Network Scripts
+
 import os
 import random
 import csv
-
-from models import RawData
+import sys
+sys.path.insert(0, './')
 import settings
+from models import RawData
+
 
 
 def get_from_csv(file_name):
