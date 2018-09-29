@@ -33,12 +33,12 @@ def get_from_csv(file_name):
     return csv.DictReader(data_open)
 
 def check_database(file_name):
-    if file_name == "cancer_data.csv":
-        database = "cancerdata"
-    elif file_name == "ep_data.csv":
-        database = "epdata"
-    elif file_name == "pnn_data.csv":
-        database = "pnndata"
+    if file_name == settings.CANCER_DATA:
+        database = mdls.CancerData
+    elif file_name == settings.EP_DATA:
+        database = mdls.EpData
+    elif file_name == settings.PNN_DATA:
+        database = mdls.PnnData
     else:
         sys.exit('data file does not match existing database')
     return database
