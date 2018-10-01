@@ -9,15 +9,23 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.engine.url import URL
+from contextlib import contextmanager
+from sqlalchemy.orm import sessionmaker
 
+ENGINE = sa.create_engine(URL(**settings.DATABASE))
+SESSION = sessionmaker(bind=ENGINE)
 
-def db_connect():
-    """Initialize Database Connection"""
-    return sa.create_engine(URL(**settings.DATABASE))
-
-# def create_tables(ENGINE):
-#     """Format Data Structure"""
-#     Base.metadata.create_all(ENGINE)
+@contextmanager
+def session_scope():
+    """ Control the SQL Database Session  """
+    session = SESSION()
+    try:
+        yield session
+        session.commit()
+    except:
+        session.rollback()
+    finally:
+        session.close()
 
 class Base(object):
     """Characteristics common to all tables"""
@@ -31,11 +39,19 @@ class Base(object):
 
     #TODO: Function to assign Folds
     #TODO: Function to clear Fold Assignment
+    
 
 Base = declarative_base(cls=Base)
 
+##TODO: Add variables to hold weights of variables linked to hidden layer
+# TODO: Add class for hidden layer network
+# TODO: Add class for output layer network
+# TODO: Add place to biases and activation functions
+
 class CancerData(Base):
-    """Value to hold fold of K-Fold cross-validation"""
+    """
+    Names of Variables are unknown
+    """
     var_one = sa.Column(sa.Float)
     var_two = sa.Column(sa.Float)
     var_three = sa.Column(sa.Float)
@@ -47,6 +63,9 @@ class CancerData(Base):
     var_nine = sa.Column(sa.Float)    
 
 class EpData(Base):
+    """
+    Names of Variables are unknown
+    """
     var_one = sa.Column(sa.Float)
     var_two = sa.Column(sa.Float)
     var_three = sa.Column(sa.Float)
@@ -55,6 +74,9 @@ class EpData(Base):
     var_six = sa.Column(sa.Float)
 
 class PnnData(Base):
+    """
+    Names of Variables are unknown
+    """
     var_one = sa.Column(sa.Float)
     var_two = sa.Column(sa.Float)
     var_three = sa.Column(sa.Float)

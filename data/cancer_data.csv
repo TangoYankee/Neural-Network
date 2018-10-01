@@ -1,4 +1,4 @@
-val_one, val_two, val_three, val_four, val_five, val_six, val_seven, val_eight, val_nine, true_value
+val_one,val_two,val_three,val_four,val_five,val_six,val_seven,val_eight,val_nine,true_value
 0.3125,0,0.375,0,0,0,0,1,0.079365,0
 0.5625,0,0.25,0.848485,0.852941,1,0,0.5,0.222222,0
 0.4375,0,0.375,0.727273,0.705882,0.5,0.16,0.5,0.238095,1
