@@ -37,7 +37,8 @@ class Base(object):
     true_value = sa.Column(sa.Integer)
     fold = sa.Column(sa.Integer, default=None)
 
-    #TODO: Function to assign Folds
+    #TODO: Function to print and check values of database
+    # TODO: Function to assign Folds
     #TODO: Function to clear Fold Assignment
     
 
