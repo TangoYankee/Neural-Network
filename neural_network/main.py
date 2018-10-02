@@ -1,34 +1,31 @@
 """
 Define the SQL Data Session and control the flow of the Neural Network
 """
-import models as mdls
+from pick import pick
+import models
+import manage_folds
 
-# K_FOLDS = 5
 
+def user_select_database():
+    """
+    User can choose 
+    """
+    title = "Choose a database to train the neural network"
+    options = [models.CancerData, models.EpData, models.PnnData]
+    database, index = pick(options, title)
+    print("Selected Database: {0}, (choice #{1})".format(database, index))
+    return database  
+    
 def main():
     """  Control the flow of the Neural Network """
-    with mdls.session_scope() as session:
-        print("Cancer")
-        for each_item in session.query(mdls.CancerData).all():
-            print(each_item.id, each_item.var_one, each_item.fold)
-        print("EP")
-        for each_item in session.query(mdls.EpData).all():
-            print(each_item.id, each_item.var_one, each_item.fold)
-        print("PNN")
-        for each_item in session.query(mdls.PnnData).all():
-            print(each_item.id, each_item.var_one, each_item.fold)
-        
-        # print("Clear Data")
-        # Pipeline().clear_data(session)
-        # print("Load Data")
-        # Pipeline().load_data(session, DATA_FILE_NAME)        # Pipeline().print_all(session)
-        # print("Assign folds")
-        # Pipeline().assign_folds(session, K_FOLDS)
-        # Pipeline().print_all(session)
-        # print("clear folds")
-        # Pipeline().clear_folds(session)
-        # Pipeline().print_all(session)
-
+    database = user_select_database()
+    with models.session_scope() as session:
+        fold_manager = manage_folds.FoldManager(database, session)
+        fold_manager.assign_folds() #Folds are assigned at the beginning of training
+        # fold_manager.print_folds()
+        #TODO: Train the Network!!
+        fold_manager.clear_folds() #Folds are reset at the end of training
+        # fold_manager.print_folds()
 
 if __name__ == "__main__":
     main()
