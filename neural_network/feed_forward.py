@@ -4,8 +4,27 @@ Calculate Output of current settings for Neural Network
 import sys
 sys.path.insert(0, './')
 import settings
+import random
 import numpy
 
+def create_weight_dict(length_list):
+    weight_dict = []
+    for key in range(length_list):
+	    weight = {"var_{0}".format(key): random.random()}
+	    weight_dict.append(weight)
+    return weight_dict
+
+def cancer_hidden_factory():
+    '''
+    Create a dictionary of hidden layer wieghts that can loaded into a SQL
+    '''
+    weight_dict = create_weight_dict(9)##TODO: Remove Magic Number. Should depend on number of input layer nodes
+    return {'weights': weight_dict}
+
+    #Return a dictionary where the key is 'value' and the value is an array of random numbers between 0 and 1, 
+    # equal to the length of the input layer
+
+  
 class FeedForward():
     """
     Object to share variables and functions common to database
@@ -38,11 +57,6 @@ class FeedForward():
         return self.all_data
 
     @property
-    def build_hidden_matrix(self):
-        self.hidden_matrix = numpy.random.rand(settings.HIDDEN_LAYER_NODES, self.variable_count)
-        return self.hidden_matrix
-
-    @property
     def cancer_matrix_factory(self):
         var_matrix = []
         for data in self.all_data:
@@ -50,6 +64,9 @@ class FeedForward():
             data.var_four, data.var_five, data.var_six, data.var_seven,
             data.var_eight, data.var_nine])
         return var_matrix
+
+
+
 
 
 ## Factory to handle the variables of each 
@@ -71,3 +88,9 @@ class FeedForward():
 #    Matrix will have three columns (inputs are from three hidden layer nodes)
 #    Matrix will have number of rows equal to number of data sets. Because only one row is required per dataset, it can store the predicted value
 ## Future iterations: Biases and Activation Functions
+
+## Keep the input layer the same. However, make the hidden layer have a single column that holds an array of random numbers. 
+## Have a separate table for the hidden layer of each database. The base will be the same. However, each hidden layer will have a
+## unique tablename
+
+## Put the check database/filename in main. It's going to be useful in several functions
